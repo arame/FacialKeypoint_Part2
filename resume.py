@@ -63,7 +63,7 @@ def main():
 
     # display the filter weights
     plt.imshow(w[filter_index][0], cmap='gray')
-
+    #plt.show()
     ##TODO: load in and display any image from the transformed test dataset
     i = 1
     show_image(test_images, w, i)
@@ -96,12 +96,13 @@ def net_sample_output(test_loader, net):
 
 
 def show_image(test_images, weights, i):
-    plt.figure(figsize=(20,10))
+    plt.figure(figsize=(10,5))
     # un-transform the image data
     image = test_images[i].data   # get the image from it's Variable wrapper
     image = image.numpy()   # convert to numpy array from a Tensor
     image = np.transpose(image, (1, 2, 0))   # transpose to go from torch to numpy image
-    dst = cv2.filter2D(image, -1, weights)
+    filter_index = 0
+    dst = cv2.filter2D(image, -1, weights[filter_index, 0])
     plt.subplot(121), plt.imshow(image, cmap='gray'), plt.title('Original')
     plt.xticks([]), plt.yticks([])
     plt.subplot(122), plt.imshow(dst, cmap='gray'), plt.title('Filtered')

@@ -97,7 +97,9 @@ def main():
     # visualize the output
     # by default this shows a batch of 10 images
     # call it
-    #visualize_output(test_images, test_outputs, gt_pts)
+    _visualise = False
+    if _visualise == True:
+        visualize_output(test_images, test_outputs, gt_pts)
 
     ## TODO: Define the loss and optimization
     import torch.optim as optim
@@ -132,6 +134,10 @@ def main():
 
     # after training, save your model parameters in the dir 'saved_models'
     torch.save(net.state_dict(), model_dir+model_name)
+    # --------------------------------------------------------------------
+    # To run the following code after retreiving an existing model, 
+    # you can do so in the resume.py file
+    # --------------------------------------------------------------------
 
     # Get the weights in the first conv layer, "conv1"
     # if necessary, change this to reflect the name of your first conv layer
@@ -217,12 +223,13 @@ def visualize_output(test_images, test_outputs, gt_pts=None, batch_size=10):
     plt.show()
 
 def show_image(test_images, weights, i):
-    plt.figure(figsize=(20,10))
+    plt.figure(figsize=(10, 5))
     # un-transform the image data
     image = test_images[i].data   # get the image from it's Variable wrapper
     image = image.numpy()   # convert to numpy array from a Tensor
     image = np.transpose(image, (1, 2, 0))   # transpose to go from torch to numpy image
-    dst = cv2.cv2.filter2D(image, -1, weights)
+    filter_index = 0
+    dst = cv2.cv2.filter2D(image, -1, weights[filter_index][0])
     plt.subplot(121), plt.imshow(image, cmap='gray'), plt.title('Original')
     plt.xticks([]), plt.yticks([])
     plt.subplot(122), plt.imshow(dst, cmap='gray'), plt.title('Filtered')
