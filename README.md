@@ -3,6 +3,7 @@
 This is the second part of the Facial Keypoint project that I worked on in the Udacity Computer Vision training course.
 The code was originally written in Jupyter Notebooks, but I prefer to code in Python files.
 This project uses deep learning architectures to build a facial keypoint detection system. Facial keypoints include points around the eyes, nose, and mouth on a face and are used in many applications. These applications include: facial tracking, facial pose recognition, facial filters, and emotion recognition. This code can look at any image, detect faces, and predict the locations of facial keypoints on each face; examples of these keypoints are displayed below.
+![alt text](https://github.com/arame/FacialKeypoint_Part2/blob/master/key_pts_example.png?raw=true)
 For part 2 we are Defining and Training a Convolutional Neural Network (CNN) to Predict Facial Keypoints
 
 ## Local Environment Instructions ##
